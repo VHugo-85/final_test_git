@@ -1,0 +1,1035 @@
+================================================================
+GUÍA COMPLETA DE TRABAJO — PROYECTO FINAL
+Curso 1: Git & GitHub para Data Science
+Instituto de Analítica y Negocios — Lima, Perú
+Docente: Ing. Marco Mayta
+================================================================
+
+DESCRIPCIÓN GENERAL
+-------------------
+Construirás un pipeline de análisis de datos cardiovasculares
+trabajando con Git desde el primer archivo. El análisis usa
+el Heart Disease Dataset de la UCI, que se descarga
+automáticamente con el notebook que recibes.
+
+El foco no está en el análisis en sí, sino en cómo lo
+construyes: cada sección tiene su propio commit, el historial
+debe poder leerse como una historia y las ramas deben tener
+un propósito claro.
+
+ARCHIVOS QUE RECIBES
+--------------------
+  main_ayuda.ipynb  — el notebook con todo el código del proyecto
+  guia.txt    — este archivo con todas las instrucciones
+
+No necesitas crear ningún archivo de código.
+Solo sigue las instrucciones en el orden en que aparecen.
+
+HERRAMIENTAS NECESARIAS
+-----------------------
+  - Git instalado y configurado con tu nombre y correo
+  - Python 3.9 o superior
+  - Jupyter Notebook o JupyterLab (o VS Code con extensión Jupyter)
+  - Una terminal (cmd, PowerShell, bash o la terminal de VS Code)
+
+Antes de empezar, verifica que Git está configurado:
+
+    git config --global user.name "Tu Nombre Completo"
+    git config --global user.email "tu@correo.com"
+
+Si ya lo configuraste antes, no necesitas hacerlo de nuevo.
+Para verificarlo:
+
+    git config --global user.name
+    git config --global user.email
+
+
+================================================================
+FASE 1 — Inicialización y commits por sección
+================================================================
+
+El objetivo de esta fase es construir el pipeline de análisis
+paso a paso, haciendo un commit después de cada sección del
+notebook. Al terminar, git log --oneline debe mostrar una
+historia coherente del proyecto.
+
+----------------------------------------------------------------
+PASO 1 — Crear la carpeta del proyecto
+----------------------------------------------------------------
+
+Crea una carpeta nueva con el nombre que quieras para el proyecto.
+Puedes hacerlo desde el explorador de archivos o desde la terminal:
+
+    mkdir proyecto_cardio
+    cd proyecto_cardio
+
+Desde ahora trabaja siempre dentro de esa carpeta.
+
+----------------------------------------------------------------
+PASO 2 — Inicializar el repositorio Git
+----------------------------------------------------------------
+
+Dentro de la carpeta del proyecto, ejecuta:
+
+    git init
+
+Git responderá algo como:
+    "Initialized empty Git repository in .../proyecto_cardio/.git/"
+
+Eso significa que el repositorio está creado. Todavía no hay
+ningún commit, ningún archivo y ningún historial.
+
+----------------------------------------------------------------
+PASO 3 — Crear la estructura de carpetas
+----------------------------------------------------------------
+
+Crea dos carpetas vacías dentro del proyecto:
+
+    mkdir data
+    mkdir outputs
+
+Git no versiona carpetas vacías. Para que Git las reconozca
+necesitas crear un archivo placeholder dentro de cada una.
+Ese archivo se llama por convención .gitkeep y está vacío.
+
+En la terminal:
+
+    Windows (cmd):
+        type nul > data\.gitkeep
+        type nul > outputs\.gitkeep
+
+    Linux / macOS / Git Bash:
+        touch data/.gitkeep
+        touch outputs/.gitkeep
+
+Tu estructura de carpetas debe verse así:
+
+    proyecto_cardio/
+        data/
+            .gitkeep
+        outputs/
+            .gitkeep
+
+----------------------------------------------------------------
+PASO 4 — Crear el archivo .gitignore
+----------------------------------------------------------------
+
+El .gitignore le dice a Git qué archivos ignorar y no versionar.
+En la raíz del proyecto (no dentro de data/ ni outputs/),
+crea un archivo de texto llamado exactamente:
+
+    .gitignore
+
+Ábrelo con cualquier editor de texto y escribe dentro
+el siguiente contenido tal como aparece aquí:
+
+-------- CONTENIDO DE .gitignore --------
+__pycache__/
+*.pyc
+*.pyo
+.env
+.DS_Store
+data/*.csv
+outputs/*.png
+outputs/*.csv
+-----------------------------------------
+
+Guarda el archivo.
+
+Este archivo le dice a Git que ignore los archivos CSV
+que genera el notebook (los datos descargados), las imágenes
+PNG que genera el EDA y los archivos de caché de Python.
+Solo el notebook y los archivos de configuración se versionan.
+
+----------------------------------------------------------------
+PASO 5 — Crear el archivo README.md
+----------------------------------------------------------------
+
+En la raíz del proyecto crea un archivo llamado:
+
+    README.md
+
+Ábrelo con un editor de texto y escribe el siguiente contenido.
+Reemplaza las partes entre corchetes con tu información real:
+
+-------- CONTENIDO DE README.md --------
+# Pipeline de Análisis — Heart Disease Dataset
+
+Análisis exploratorio del dataset cardiovascular de la UCI.
+El pipeline carga, limpia y analiza 303 registros clínicos
+para explorar patrones asociados a enfermedades cardíacas.
+
+## Autor
+
+[Tu nombre completo]
+Instituto de Analítica y Negocios — Lima, Perú
+Curso 1: Git & GitHub para Data Science
+
+## Instalación
+
+```
+pip install ucimlrepo pandas matplotlib seaborn
+```
+
+## Ejecución
+
+Abrir y ejecutar el notebook main.ipynb en orden.
+Los datos se descargan automáticamente en la primera celda.
+
+## Estructura del proyecto
+
+    data/           Datos generados por el notebook (ignorados por Git)
+    outputs/        Figuras y resúmenes generados (ignorados por Git)
+    main.ipynb      Notebook principal del pipeline
+    README.md       Descripción del proyecto
+    .gitignore      Archivos excluidos del control de versiones
+-----------------------------------------
+
+Guarda el archivo.
+
+----------------------------------------------------------------
+PASO 6 — Primer commit: estructura del proyecto
+----------------------------------------------------------------
+
+Ahora que tienes la estructura base lista, haz el primer commit.
+Primero verifica qué archivos están pendientes:
+
+    git status
+
+Deberías ver algo como:
+    Untracked files: .gitignore, README.md, data/, outputs/
+
+Agrega todo al Staging Area:
+
+    git add .
+
+Verifica que quedó en el Staging Area:
+
+    git status
+
+Ahora los archivos deben aparecer en verde bajo "Changes to be
+committed". Haz el commit:
+
+    git commit -m "chore: inicializar estructura del proyecto"
+
+Verifica que el commit quedó registrado:
+
+    git log --oneline
+
+Debes ver una línea como:
+    a1b2c3d (HEAD -> main) chore: inicializar estructura del proyecto
+
+----------------------------------------------------------------
+PASO 7 — Mover el notebook al proyecto y hacer el segundo commit
+----------------------------------------------------------------
+
+Copia o mueve el archivo main_ayuda.ipynb que recibiste
+a la carpeta del proyecto (la misma donde está el README.md)
+y crea tu propio main.ipynb.
+
+Verifica que aparece como archivo nuevo:
+
+    git status
+
+Agrégalo y haz el commit:
+
+    git add main.ipynb
+    git commit -m "chore: agregar notebook principal del pipeline"
+
+Verifica el historial:
+
+    git log --oneline
+
+Ahora deben aparecer dos commits.
+
+----------------------------------------------------------------
+PASO 8 — Instalar las dependencias
+----------------------------------------------------------------
+
+Antes de abrir el notebook, instala las librerías necesarias
+en tu entorno Python:
+
+    pip install ucimlrepo pandas matplotlib seaborn
+
+Si usas conda:
+
+    conda install pandas matplotlib seaborn
+    pip install ucimlrepo
+
+Espera a que termine la instalación antes de continuar.
+
+----------------------------------------------------------------
+PASO 9 — Ejecutar la Sección 1 del notebook y hacer commit
+----------------------------------------------------------------
+
+Abre el notebook main_ayuda.ipynb en Jupyter o en VS Code
+Copia la Sección 1 únicamente a tu propio main.ipynb.
+
+Ejecuta solo las celdas de la sección titulada:
+    "Sección 1 — Carga del dataset"
+
+Esas celdas descargan el dataset de la UCI y guardan
+el archivo data/heart.csv. El archivo CSV no se versiona
+(está en el .gitignore) pero el notebook sí.
+
+Vuelve a la terminal y haz el commit del notebook
+con las celdas ya ejecutadas:
+
+    git add main.ipynb
+    git commit -m "feat: cargar dataset cardiovascular desde UCI"
+
+Verifica:
+
+    git log --oneline
+
+----------------------------------------------------------------
+PASO 10 — Ejecutar la Sección 2 del notebook y hacer commit
+----------------------------------------------------------------
+Copia la Sección 2 a tu propio main.ipynb.
+En el notebook, ejecuta las celdas de la sección:
+    "Sección 2 — Inspección inicial"
+
+Esas celdas muestran los primeros registros, los tipos de datos,
+las estadísticas descriptivas, los valores nulos y la
+distribución de la variable objetivo.
+
+Cuando termines, vuelve a la terminal:
+
+    git add main.ipynb
+    git commit -m "feat: inspeccion inicial del dataset"
+
+----------------------------------------------------------------
+PASO 11 — Ejecutar la Sección 3 del notebook y hacer commit
+----------------------------------------------------------------
+Copia la Sección 3 a tu propio main.ipynb.
+
+En el notebook, ejecuta las celdas de la sección:
+    "Sección 3 — Limpieza de datos"
+
+Esas celdas verifican duplicados, rangos inválidos y
+reemplazan ceros que no tienen sentido clínico con la mediana.
+El resultado se guarda como data/heart_limpio.csv.
+
+Vuelve a la terminal:
+
+    git add main.ipynb
+    git commit -m "feat: limpieza de valores invalidos y duplicados"
+
+----------------------------------------------------------------
+PASO 12 — Ejecutar la Sección 4 del notebook y hacer commit
+----------------------------------------------------------------
+Copia la Sección 4 a tu propio main.ipynb.
+
+En el notebook, ejecuta las celdas de la sección:
+    "Sección 4 — Análisis exploratorio (EDA)"
+
+Esas celdas generan tres figuras:
+    - Distribución de edad por condición cardíaca
+    - Proporción de enfermos por sexo
+    - Matriz de correlación entre variables
+
+Las figuras se guardan en outputs/ pero no se versionan.
+El notebook sí cambia porque las celdas tienen salidas nuevas.
+
+Vuelve a la terminal:
+
+    git add main.ipynb
+    git commit -m "feat: analisis exploratorio con tres visualizaciones"
+
+----------------------------------------------------------------
+PASO 13 — Verificar el historial de la Fase 1
+----------------------------------------------------------------
+
+Ejecuta:
+
+    git log --oneline
+
+Debes ver exactamente estos commits en este orden
+(los hashes serán distintos, eso es normal):
+
+    xxxxxxx (HEAD -> main) feat: analisis exploratorio con tres visualizaciones
+    xxxxxxx feat: limpieza de valores invalidos y duplicados
+    xxxxxxx feat: inspeccion inicial del dataset
+    xxxxxxx feat: cargar dataset cardiovascular desde UCI
+    xxxxxxx chore: agregar notebook principal del pipeline
+    xxxxxxx chore: inicializar estructura del proyecto
+
+Si el orden o los mensajes son distintos, revisa qué pasó
+antes de continuar con la Fase 2.
+
+Copia el resultado de ese git log --oneline y pégalo
+en el README.md bajo una sección nueva que se llame:
+
+    ## Historial de la Fase 1
+
+Luego haz un commit con ese cambio:
+
+    git add README.md
+    git commit -m "docs: registrar historial de fase 1 en README"
+
+
+================================================================
+FASE 2 — Corrección del historial
+================================================================
+
+El objetivo es practicar git reset para deshacer un commit
+sin perder los cambios. El error es intencional y forma
+parte del ejercicio.
+
+----------------------------------------------------------------
+PASO 1 — Ejecutar la celda de la Fase 2 en el notebook
+----------------------------------------------------------------
+
+En el notebook, busca la sección titulada:
+    "FASE 2 — Corrección del historial"
+Haz una copia a tu propio main.ipynb.
+
+Ejecuta esa celda. Lo que hace internamente es leer la
+proporción de enfermos que encontraste en el EDA y agregar
+esa información al README.md automáticamente.
+
+Cuando termine, abre el README.md y verifica que al final
+del archivo apareció un bloque nuevo con el resultado.
+
+----------------------------------------------------------------
+PASO 2 — Hacer el commit con el mensaje malo (a propósito)
+----------------------------------------------------------------
+
+Haz staging de todos los cambios:
+
+    git add .
+
+Ahora haz el commit con este mensaje terrible, tal como aparece:
+
+    git commit -m "cambios"
+
+Verifica que quedó registrado:
+
+    git log --oneline
+
+Vas a ver el commit "cambios" al tope del historial.
+Ese es el error que vas a corregir ahora.
+
+----------------------------------------------------------------
+PASO 3 — Deshacer el commit sin perder los cambios
+----------------------------------------------------------------
+
+Ejecuta:
+
+    git reset HEAD~1
+
+Este comando deshace el último commit pero conserva los cambios
+en los archivos. Es como decirle a Git: "olvida que ese commit
+existió, pero no toques mis archivos".
+
+Verifica que el commit desapareció:
+
+    git log --oneline
+
+El commit "cambios" ya no debe estar en el historial.
+
+Ahora verifica que los cambios siguen intactos:
+
+    git status
+
+Debes ver los archivos modificados en rojo bajo
+"Changes not staged for commit". Los archivos están ahí,
+simplemente ya no tienen commit asociado.
+
+----------------------------------------------------------------
+PASO 4 — Rehacerlo con un mensaje correcto
+----------------------------------------------------------------
+
+Haz staging de los cambios de nuevo:
+
+    git add .
+
+Ahora el commit con el mensaje correcto:
+
+    git commit -m "docs: agregar resultado clave del EDA en README"
+
+Verifica el historial:
+
+    git log --oneline
+
+El historial debe verse limpio, como si el commit "cambios"
+nunca hubiera existido.
+
+----------------------------------------------------------------
+PASO 5 — Documentar la decisión en el README.md
+----------------------------------------------------------------
+
+Abre el README.md y agrega al final una sección nueva
+con el siguiente contenido. Ajusta la oración en cursiva
+con tus propias palabras:
+
+-------- SECCIÓN A AGREGAR EN README.md --------
+## Decisiones del historial
+
+En la Fase 2 se usó `git reset HEAD~1` para deshacer un commit
+cuyo mensaje no era descriptivo ("cambios"). Los archivos
+modificados se conservaron y se volvieron a commitear con
+un mensaje que explica claramente qué cambió y por qué.
+
+Esta práctica es útil antes de hacer push al remoto, cuando
+aún es posible reescribir el historial local sin afectar
+a otros colaboradores.
+-------------------------------------------------
+
+Guarda el archivo y haz el commit:
+
+    git add README.md
+    git commit -m "docs: documentar correccion de historial en README"
+
+
+================================================================
+FASE 3 — Ramas y resolución de conflicto
+================================================================
+
+El objetivo es trabajar en dos ramas en paralelo y fusionarlas
+a main. El conflicto que ocurrirá en el README.md es intencional
+y resolverlo correctamente forma parte de la evaluación.
+
+================================================================
+RAMA 1: feature/visualizaciones
+================================================================
+
+----------------------------------------------------------------
+PASO 1 — Crear la rama y verificar
+----------------------------------------------------------------
+
+Desde main, crea la rama y cámbiate a ella en un solo comando:
+
+    git checkout -b feature/visualizaciones
+
+Verifica que estás en la rama correcta:
+
+    git branch
+
+Debes ver un asterisco (*) al lado de feature/visualizaciones:
+    * feature/visualizaciones
+      main
+
+----------------------------------------------------------------
+PASO 2 — Ejecutar la celda de visualizaciones en el notebook
+----------------------------------------------------------------
+
+En el notebook, busca la sección titulada y copia a tu propio main.ipynb:
+    "FASE 3 — Rama feature/visualizaciones"
+
+Ejecuta esa celda. Genera una figura nueva: un boxplot de
+colesterol separado entre pacientes sanos y enfermos.
+La imagen se guarda en outputs/ y no se versiona, pero el
+notebook queda con la celda ejecutada.
+
+----------------------------------------------------------------
+PASO 3 — Modificar el README.md en esta rama
+----------------------------------------------------------------
+
+Abre el README.md y agrega al final del archivo
+esta línea exacta, sin cambiarla:
+
+    - Rama visualizaciones: boxplot de colesterol agregado.
+
+Guarda el archivo.
+
+----------------------------------------------------------------
+PASO 4 — Hacer los commits en esta rama
+----------------------------------------------------------------
+
+Primer commit con el notebook:
+
+    git add main.ipynb
+    git commit -m "feat: agregar boxplot de colesterol por condicion"
+
+Segundo commit con el README:
+
+    git add README.md
+    git commit -m "docs: registrar cambio en README rama visualizaciones"
+
+Verifica el historial desde esta rama:
+
+    git log --oneline
+
+Debes ver los commits de la Fase 1 y Fase 2 más estos dos nuevos.
+
+----------------------------------------------------------------
+PASO 5 — Volver a main
+----------------------------------------------------------------
+
+    git checkout main
+
+Confirma que estás en main:
+
+    git branch
+
+El asterisco debe estar ahora en main.
+
+================================================================
+RAMA 2: feature/estadisticas
+================================================================
+
+----------------------------------------------------------------
+PASO 1 — Crear la segunda rama desde main
+----------------------------------------------------------------
+
+Importante: debes estar en main antes de crear esta rama.
+Si no lo estás, vuelve con git checkout main primero.
+
+    git checkout -b feature/estadisticas
+
+Verifica:
+
+    git branch
+
+Debes ver:
+    * feature/estadisticas
+      feature/visualizaciones
+      main
+
+----------------------------------------------------------------
+PASO 2 — Ejecutar las celdas de estadísticas en el notebook
+----------------------------------------------------------------
+
+En el notebook, busca la sección titulada:
+    "FASE 3 — Rama feature/estadisticas"
+Copia a tu propio notebook main.ipynb
+Ejecuta todas las celdas de esa sección. Crean grupos de edad,
+calculan la proporción de enfermos por grupo y generan un
+resumen estadístico guardado en outputs/.
+
+----------------------------------------------------------------
+PASO 3 — Modificar el README.md en esta rama
+----------------------------------------------------------------
+
+Abre el README.md y agrega al final del archivo
+esta línea exacta, sin cambiarla:
+
+    - Rama estadisticas: resumen por grupo de edad agregado.
+
+IMPORTANTE: Esta línea va en la misma posición aproximada
+que la línea que agregaste en la rama anterior. Eso es lo
+que va a generar el conflicto cuando fusiones ambas ramas.
+
+Guarda el archivo.
+
+----------------------------------------------------------------
+PASO 4 — Hacer los commits en esta rama
+----------------------------------------------------------------
+
+    git add main.ipynb
+    git commit -m "feat: agregar resumen estadistico por grupo de edad"
+
+    git add README.md
+    git commit -m "docs: registrar cambio en README rama estadisticas"
+
+Verifica el historial:
+
+    git log --oneline
+
+----------------------------------------------------------------
+PASO 5 — Volver a main
+----------------------------------------------------------------
+
+    git checkout main
+
+Confirma que estás en main:
+
+    git branch
+
+================================================================
+FUSIÓN DE LAS DOS RAMAS Y RESOLUCIÓN DEL CONFLICTO
+================================================================
+
+----------------------------------------------------------------
+PASO 1 — Fusionar la primera rama (sin conflicto)
+----------------------------------------------------------------
+
+Estando en main, fusiona la primera rama:
+
+    git merge feature/visualizaciones
+
+Git dirá algo como:
+    Updating xxxxxxx..xxxxxxx
+    Fast-forward (o Merge made by the 'ort' strategy)
+
+No hay conflicto aquí porque main no tiene cambios propios
+que choquen con esa rama.
+
+Verifica el historial:
+
+    git log --oneline
+
+Los commits de feature/visualizaciones ahora están en main.
+
+----------------------------------------------------------------
+PASO 2 — Fusionar la segunda rama (aquí viene el conflicto)
+----------------------------------------------------------------
+
+    git merge feature/estadisticas
+
+Git se detendrá con un mensaje similar a este:
+
+    Auto-merging README.md
+    CONFLICT (content): Merge conflict in README.md
+    Automatic merge failed; fix conflicts and then commit the result.
+
+Esto es exactamente lo que esperábamos. Git encontró que ambas
+ramas modificaron la misma parte del README.md y no puede
+decidir solo cuál versión conservar.
+
+----------------------------------------------------------------
+PASO 3 — Entender el conflicto en el archivo
+----------------------------------------------------------------
+
+Abre el README.md con tu editor de texto.
+Al final del archivo verás algo como esto:
+
+-------- ASÍ SE VE EL CONFLICTO EN EL ARCHIVO --------
+<<<<<<< HEAD
+- Rama visualizaciones: boxplot de colesterol agregado.
+=======
+- Rama estadisticas: resumen por grupo de edad agregado.
+>>>>>>> feature/estadisticas
+-------------------------------------------------------
+
+Qué significa cada parte:
+  <<<<<<< HEAD         → inicio del bloque en conflicto
+  (líneas de HEAD)     → versión que está en main actualmente
+  =======              → separador entre las dos versiones
+  (líneas de la rama)  → versión que viene de feature/estadisticas
+  >>>>>>> feature/...  → fin del bloque en conflicto
+
+----------------------------------------------------------------
+PASO 4 — Resolver el conflicto manualmente
+----------------------------------------------------------------
+
+Edita el README.md. Elimina las tres líneas con marcas:
+    <<<<<<< HEAD
+    =======
+    >>>>>>> feature/estadisticas
+
+Y deja AMBAS líneas de contenido, una debajo de la otra,
+exactamente así:
+
+-------- CÓMO DEBE QUEDAR EL README.md DESPUÉS --------
+- Rama visualizaciones: boxplot de colesterol agregado.
+- Rama estadisticas: resumen por grupo de edad agregado.
+-------------------------------------------------------
+
+Guarda el archivo.
+
+----------------------------------------------------------------
+PASO 5 — Confirmar la resolución y cerrar el merge
+----------------------------------------------------------------
+
+Verifica que el conflicto está resuelto:
+
+    git status
+
+Debe aparecer README.md bajo "both modified" en rojo.
+Agrégalo para indicar que lo resolviste:
+
+    git add README.md
+
+Cierra el merge con el commit:
+
+    git commit -m "merge: integrar visualizaciones y estadisticas en main"
+
+----------------------------------------------------------------
+PASO 6 — Verificar el historial final del proyecto
+----------------------------------------------------------------
+
+Ejecuta:
+
+    git log --oneline --graph
+
+Debes ver algo similar a esto (los hashes son distintos):
+
+    *   xxxxxxx (HEAD -> main) merge: integrar visualizaciones y estadisticas en main
+    |\
+    | * xxxxxxx docs: registrar cambio en README rama estadisticas
+    | * xxxxxxx feat: agregar resumen estadistico por grupo de edad
+    * | xxxxxxx docs: registrar cambio en README rama visualizaciones
+    * | xxxxxxx feat: agregar boxplot de colesterol por condicion
+    |/
+    * xxxxxxx docs: documentar correccion de historial en README
+    * xxxxxxx docs: agregar resultado clave del EDA en README
+    * xxxxxxx feat: analisis exploratorio con tres visualizaciones
+    ...
+
+Las dos ramas que se bifurcan y convergen en el commit de merge
+es exactamente lo que debe verse.
+
+Copia ese texto y pégalo en el README.md bajo una sección nueva:
+
+-------- SECCIÓN A AGREGAR EN README.md --------
+## Historial final del proyecto
+
+(pega aquí el resultado de git log --oneline --graph)
+-------------------------------------------------
+
+Haz el último commit de la fase:
+
+    git add README.md
+    git commit -m "docs: agregar historial final del proyecto en README"
+
+
+================================================================
+FASE 4 — Publicación en GitHub (OPCIONAL)
+================================================================
+
+Esta fase no es obligatoria para la evaluación, pero
+es el paso natural después de terminar el trabajo local.
+Sigue estos pasos solo si ya tienes una cuenta en GitHub.
+
+----------------------------------------------------------------
+PASO 1 — Crear el repositorio en GitHub
+----------------------------------------------------------------
+
+1. Entra a https://github.com y accede a tu cuenta.
+
+2. Haz clic en el botón "+" en la esquina superior derecha
+   y elige "New repository".
+
+3. Llena el formulario con estos valores:
+       Repository name: proyecto_cardio   (o el nombre que prefieras)
+       Description:     Pipeline de análisis cardiovascular — Curso Git
+       Visibility:      Public
+
+4. MUY IMPORTANTE: NO marques ninguna de estas opciones:
+       - Add a README file        (ya tienes uno)
+       - Add .gitignore           (ya tienes uno)
+       - Choose a license
+
+   Si marcas alguna, GitHub creará un commit propio y habrá
+   conflicto al intentar conectar tu repositorio local.
+
+5. Haz clic en "Create repository".
+
+GitHub te mostrará una página con instrucciones.
+Necesitarás la URL del repositorio que aparece arriba.
+Tiene esta forma:
+       https://github.com/tu_usuario/proyecto_cardio.git
+
+----------------------------------------------------------------
+PASO 2 — Generar un token de acceso personal (si usas HTTPS)
+----------------------------------------------------------------
+
+GitHub ya no acepta contraseñas para hacer push.
+Necesitas un token personal. Si ya tienes uno configurado
+puedes saltar al Paso 3.
+
+Para crear uno:
+
+1. En GitHub, ve a tu foto de perfil (esquina superior derecha)
+   → Settings → Developer settings → Personal access tokens
+   → Tokens (classic) → Generate new token (classic).
+
+2. En "Note" escribe: curso-git-proyecto-final
+
+3. En "Expiration" elige 30 days (suficiente para el proyecto).
+
+4. En "Select scopes" marca:  repo  (marca la casilla principal,
+   selecciona todos los sub-permisos automáticamente).
+
+5. Haz clic en "Generate token".
+
+6. COPIA EL TOKEN AHORA. GitHub no te lo mostrará de nuevo.
+   Guárdalo en un lugar seguro (no lo pongas en el código).
+
+   Tiene esta forma:
+       ghp_XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+----------------------------------------------------------------
+PASO 3 — Conectar el repositorio local con el remoto
+----------------------------------------------------------------
+
+En la terminal, dentro de tu carpeta del proyecto, ejecuta:
+
+    git remote add origin https://github.com/tu_usuario/proyecto_cardio.git
+
+Reemplaza "tu_usuario" y "proyecto_cardio" con los valores reales.
+
+Verifica que la conexión quedó configurada:
+
+    git remote -v
+
+Debes ver:
+    origin  https://github.com/tu_usuario/proyecto_cardio.git (fetch)
+    origin  https://github.com/tu_usuario/proyecto_cardio.git (push)
+
+----------------------------------------------------------------
+PASO 4 — Subir la rama main al remoto
+----------------------------------------------------------------
+
+    git push -u origin main
+
+La primera vez que hagas push, la terminal pedirá
+tus credenciales de GitHub:
+
+    Username: tu_usuario_de_github
+    Password: (aquí pega el token, no tu contraseña)
+
+El token no se muestra mientras lo escribes, eso es normal.
+Presiona Enter.
+
+Si el push fue exitoso, verás algo como:
+    Branch 'main' set up to track remote branch 'main' from 'origin'.
+    * [new branch] main -> main
+
+----------------------------------------------------------------
+PASO 5 — Subir las ramas de feature al remoto
+----------------------------------------------------------------
+
+    git push origin feature/visualizaciones
+    git push origin feature/estadisticas
+
+Esto hace que las ramas también sean visibles en GitHub,
+no solo en tu repositorio local.
+
+----------------------------------------------------------------
+PASO 6 — Verificar en GitHub
+----------------------------------------------------------------
+
+Entra a https://github.com/tu_usuario/proyecto_cardio
+
+Verifica que:
+  - El README.md se muestra correctamente en la página principal.
+  - La pestaña "Code" muestra todos tus archivos.
+  - La pestaña "Commits" muestra el historial completo
+    con todos los mensajes que escribiste.
+  - La pestaña "Branches" muestra las tres ramas:
+    main, feature/visualizaciones y feature/estadisticas.
+
+Si todo aparece correctamente, la publicación fue exitosa.
+
+----------------------------------------------------------------
+PASO 7 — Copiar el enlace del repositorio
+----------------------------------------------------------------
+
+La URL de tu repositorio tiene esta forma:
+    https://github.com/tu_usuario/proyecto_cardio
+
+Esa es la URL de entrega.
+
+
+================================================================
+PREGUNTAS CONCEPTUALES
+================================================================
+
+Marca con una X la única respuesta correcta.
+No se permite marcar más de una opción por pregunta.
+
+------------------------------------------------------------------
+Pregunta 1
+------------------------------------------------------------------
+¿Qué ocurre exactamente cuando ejecutas git add sobre un archivo?
+
+( ) a) El archivo se guarda en el repositorio con un nuevo commit.
+( ) b) El archivo se copia al Staging Area, listo para el próximo commit.
+( ) c) El archivo se sube automáticamente al repositorio remoto.
+( ) d) Git crea una nueva rama con los cambios del archivo.
+
+Respuesta: ___
+
+------------------------------------------------------------------
+Pregunta 2
+------------------------------------------------------------------
+Usaste git reset HEAD~1 para deshacer un commit.
+¿Cuál es la diferencia principal respecto a git reset --hard HEAD~1?
+
+( ) a) Ambos comandos hacen exactamente lo mismo.
+( ) b) Con HEAD~1 se borra el commit pero los cambios en los archivos
+       se conservan; con --hard se borra el commit Y los cambios también.
+( ) c) Con --hard se crea una nueva rama; con HEAD~1 no.
+( ) d) HEAD~1 borra el commit y --hard solo cambia el mensaje del commit.
+
+Respuesta: ___
+
+------------------------------------------------------------------
+Pregunta 3
+------------------------------------------------------------------
+En la Fase 3, al fusionar las dos ramas a main, Git generó
+un conflicto en README.md. ¿Por qué ocurrió ese conflicto?
+
+( ) a) Porque main.ipynb es un archivo binario que Git ignora siempre.
+( ) b) Porque ambas ramas modificaron la misma zona del README.md
+       y Git no puede decidir solo cuál versión conservar.
+( ) c) Porque README.md no estaba incluido en el .gitignore.
+( ) d) Porque Git solo genera conflictos en archivos de texto plano.
+
+Respuesta: ___
+
+------------------------------------------------------------------
+Pregunta 4
+------------------------------------------------------------------
+¿Qué muestra el flag --graph al ejecutar git log --oneline --graph?
+
+( ) a) Un diagrama de los archivos modificados en cada commit.
+( ) b) La representación visual de cómo se bifurcan y convergen
+       las ramas en el historial de commits.
+( ) c) La lista de colaboradores que participaron en cada commit.
+( ) d) El diff de los cambios introducidos en cada commit.
+
+Respuesta: ___
+
+------------------------------------------------------------------
+Pregunta 5
+------------------------------------------------------------------
+Un compañero revisa tu proyecto tres semanas después y ve este
+commit en el historial:
+    "feat: limpieza de valores invalidos y duplicados"
+¿Qué ventaja concreta le da ese mensaje frente a uno como "cambios"?
+
+( ) a) Ninguna. El mensaje de commit no afecta el funcionamiento del código.
+( ) b) Le permite saber qué tipo de transformación se hizo y en qué parte
+       del pipeline, sin necesidad de abrir el archivo ni el diff.
+( ) c) Le permite revertir el commit más rápido usando git revert.
+( ) d) Le indica en qué rama se hizo el commit originalmente.
+
+Respuesta: ___
+
+
+================================================================
+TABLA DE COMMITS ESPERADOS — REFERENCIA RÁPIDA
+================================================================
+
+A continuación se listan todos los commits que debe tener
+el repositorio al finalizar las cuatro fases. Los hashes
+serán distintos en cada computadora, eso es normal.
+
+FASE 1:
+  chore: inicializar estructura del proyecto
+  chore: agregar notebook principal del pipeline
+  feat: cargar dataset cardiovascular desde UCI
+  feat: inspeccion inicial del dataset
+  feat: limpieza de valores invalidos y duplicados
+  feat: analisis exploratorio con tres visualizaciones
+  docs: registrar historial de fase 1 en README
+
+FASE 2:
+  docs: agregar resultado clave del EDA en README
+  docs: documentar correccion de historial en README
+
+FASE 3 (rama feature/visualizaciones):
+  feat: agregar boxplot de colesterol por condicion
+  docs: registrar cambio en README rama visualizaciones
+
+FASE 3 (rama feature/estadisticas):
+  feat: agregar resumen estadistico por grupo de edad
+  docs: registrar cambio en README rama estadisticas
+
+FASE 3 (merge en main):
+  merge: integrar visualizaciones y estadisticas en main
+  docs: agregar historial final del proyecto en README
+
+Total: 16 commits.
+
+Si al terminar git log --oneline muestra menos commits,
+revisa qué paso se saltó antes de entregar.
+
+
+================================================================
+FIN DE LA GUÍA
+================================================================
