@@ -1,0 +1,98 @@
+Fase I
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> Get-History | Select-String "git clone"
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> history
+
+  Id CommandLine                                                                                                                                                               
+  -- -----------                                                                                                                                                               
+   1 try { . "c:\Users\LAB. ENTOMOLOGICO\AppData\Local\Programs\Microsoft VS Code\8b640eef5a\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration...
+   2 Get-History | Select-String "git clone"                                                                                                                                   
+
+
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> ^C
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git config --global user.name "Víctor Rodríguez"        
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git config --global user.email "vhugor0585@gmail.com"
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git config --global user.name
+Víctor Rodríguez
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git config --global user.email
+vhugor0585@gmail.com
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git add .
+warning: in the working copy of 'git_final_test.ipynb', LF will be replaced by CRLF the next time Git touches it
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git commit -m "chore: inicializar estructura del proyecto"
+[main 767b575] chore: inicializar estructura del proyecto
+ 4 files changed, 10 insertions(+), 1 deletion(-)
+ create mode 100644 .gitignore
+ create mode 100644 mekdir autputs/outputs.gitkeep
+ create mode 100644 mkdir data/data.gitkeep
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git log --oneline
+767b575 (HEAD -> main) chore: inicializar estructura del proyecto
+435ca73 (origin/main, origin/HEAD) Create git_final_test.ipynb
+5dbb7f9 Add files via upload
+e95a4c9 Initialize README with project title
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git add main.ipynb
+fatal: pathspec 'main.ipynb' did not match any files
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git add main.ipynb
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git commit -m "chore: agregar notebook principal del pipeline"
+[main a487e36] chore: agregar notebook principal del pipeline
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 main.ipynb
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> 
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git push
+Enumerating objects: 10, done.
+Counting objects: 100% (10/10), done.
+Delta compression using up to 6 threads
+Compressing objects: 100% (5/5), done.
+Writing objects: 100% (8/8), 916 bytes | 458.00 KiB/s, done.
+Total 8 (delta 1), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (1/1), done.
+To https://github.com/VHugo-85/final_test_git.git
+   435ca73..a487e36  main -> main
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git add .
+warning: in the working copy of 'main_ayuda.ipynb', LF will be replaced by CRLF the next time Git touches it
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> 
+ *  History restored 
+
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git add main.ipynb
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git add .                                                       
+warning: in the working copy of 'git_final_test.ipynb', LF will be replaced by CRLF the next time Git touches it
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git commit -m "feat: cargar dataset cardiovascular desde UCI"                                                  
+[main 4d5e4e1] feat: cargar dataset cardiovascular desde UCI
+ 6 files changed, 538 insertions(+), 3 deletions(-)
+ create mode 100644 main_ayuda.ipynb
+ create mode 100644 screen.docx
+ create mode 100644 ~$screen.docx
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git add main.ipynb
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git commit -m "feat: inspeccion inicial del dataset"
+On branch main
+Your branch is ahead of 'origin/main' by 1 commit.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git add main.ipynb
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git commit -m "feat: limpieza de valores invalidos y duplicados"
+On branch main
+Your branch is ahead of 'origin/main' by 1 commit.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git add main.ipynb
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git commit -m "feat: analisis exploratorio con tres visualizaciones"
+On branch main
+Your branch is ahead of 'origin/main' by 1 commit.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git log --oneline
+4d5e4e1 (HEAD -> main) feat: cargar dataset cardiovascular desde UCI
+a487e36 (origin/main, origin/HEAD) chore: agregar notebook principal del pipeline
+767b575 chore: inicializar estructura del proyecto
+435ca73 Create git_final_test.ipynb
+5dbb7f9 Add files via upload
+e95a4c9 Initialize README with project title
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git add README.md
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git commit -m "docs: registrar historial de fase 1 en README"
+On branch main
+Your branch is ahead of 'origin/main' by 1 commit.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+Fase II
