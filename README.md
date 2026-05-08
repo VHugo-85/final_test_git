@@ -40,3 +40,21 @@ aún es posible reescribir el historial local sin afectar
 a otros colaboradores.
 - Rama visualizaciones: boxplot de colesterol agregado.
 - Rama estadisticas: resumen por grupo de edad agregado.
+## Historial final del proyecto
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git log --oneline --graph
+*   0dc8867 (HEAD -> main) merge: integrar visualizaciones y estadisticas en main
+|\  
+| * 0a58d32 (feature/estadisticas) docs: registrar cambio en README rama estadisticas
+* | 860d03e docs: cambio en main para forzar conflicto
+|/  
+* 838b94e feat: agregar resumen estadistico por grupo de edad
+* 31d92e6 (feature/visualizaciones) Cambios en .docx
+* 723c01d (origin/main, origin/HEAD) docs: agregar resultado clave del EDA en README
+* ba26edb Feat: Agrega todos los archivos pendientes
+* 4d5e4e1 feat: cargar dataset cardiovascular desde UCI
+* a487e36 chore: agregar notebook principal del pipeline
+* 767b575 chore: inicializar estructura del proyecto
+* 435ca73 Create git_final_test.ipynb
+* 5dbb7f9 Add files via upload
+* e95a4c9 Initialize README with project title
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> 
