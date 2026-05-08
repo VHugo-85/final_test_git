@@ -16,3 +16,6 @@ outputs/ Figuras y resúmenes generados (ignorados por Git)
 main.ipynb Notebook principal del pipeline
 README.md Descripción del proyecto
 .gitignore Archivos excluidos del control de versiones
+
+## Resultado clave
+El 45.9% de los pacientes del dataset presenta enfermedad cardíaca.
