@@ -95,4 +95,239 @@ Your branch is ahead of 'origin/main' by 1 commit.
   (use "git push" to publish your local commits)
 
 nothing to commit, working tree clean
-Fase II
+
+
+Fase II y III
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   README.md
+
+no changes added to commit (use "git add" and/or "git commit -a")
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git add .
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git commit -m "docs: agregar resultado clave del EDA en README"
+[main 723c01d] docs: agregar resultado clave del EDA en README
+ 1 file changed, 3 insertions(+)
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git add README.md
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git commit -m "docs: documentar correccion de historial en README"
+On branch main
+Your branch is ahead of 'origin/main' by 1 commit.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git push
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 6 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 415 bytes | 415.00 KiB/s, done.
+Total 3 (delta 2), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+To https://github.com/VHugo-85/final_test_git.git
+   ba26edb..723c01d  main -> main
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git commit -m secreen.docx
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   screen.docx
+
+no changes added to commit (use "git add" and/or "git commit -a")
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git commit -m screen.docx 
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   screen.docx
+
+no changes added to commit (use "git add" and/or "git commit -a")
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git add .                 
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git commit -m "Cambios en .docx"
+[main 31d92e6] Cambios en .docx
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git checkout -b feature/visualizaciones
+Switched to a new branch 'feature/visualizaciones'
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git branch
+* feature/visualizaciones
+  main
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git add main.ipynb
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git commit -m "feat: agregar boxplot de colesterol por condicion"
+On branch feature/visualizaciones
+nothing to commit, working tree clean
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git add README.md
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git commit -m "docs: registrar cambio en README rama visualizaciones"
+On branch feature/visualizaciones
+nothing to commit, working tree clean
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git checkout main
+Switched to branch 'main'
+Your branch is ahead of 'origin/main' by 1 commit.
+  (use "git push" to publish your local commits)
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git checkout -b feature/estadisticas
+Switched to a new branch 'feature/estadisticas'
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git merge feature/visualizaciones
+Already up to date.
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git merge feature/estadisticas
+Already up to date.
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git checkout feature/estadisticas
+Already on 'feature/estadisticas'
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git add .
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git commit -m "feat: agregar resumen estadistico por grupo de edad"
+On branch feature/estadisticas
+nothing to commit, working tree clean
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git checkout main
+Switched to branch 'main'
+Your branch is ahead of 'origin/main' by 1 commit.
+  (use "git push" to publish your local commits)
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git merge feature/visualizaciones
+Already up to date.
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git merge feature/estadisticas
+Already up to date.
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git checkout main
+Already on 'main'
+Your branch is ahead of 'origin/main' by 1 commit.
+  (use "git push" to publish your local commits)
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git add README.md
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git commit -m "docs: forzar texto en main para conflicto"
+On branch main
+Your branch is ahead of 'origin/main' by 1 commit.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git checkout feature/estadisticas
+Switched to branch 'feature/estadisticas'
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git add README.md
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git commit -m "docs: cambio en estadisticas para conflicto"
+On branch feature/estadisticas
+nothing to commit, working tree clean
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git checkout main
+Switched to branch 'main'
+Your branch is ahead of 'origin/main' by 1 commit.
+  (use "git push" to publish your local commits)
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git add README.md
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git commit -m "docs: crear divergencia en main"
+On branch main
+Your branch is ahead of 'origin/main' by 1 commit.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git checkout feature/estadisticas
+Switched to branch 'feature/estadisticas'
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git add README.md
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git commit -m "docs: crear divergencia en estadisticas"
+On branch feature/estadisticas
+nothing to commit, working tree clean
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git checkout main
+Switched to branch 'main'
+Your branch is ahead of 'origin/main' by 1 commit.
+  (use "git push" to publish your local commits)
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git merge feature/estadisticas
+Already up to date.
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git checkout feature/estadisticas
+Switched to branch 'feature/estadisticas'
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git add README.md.
+fatal: pathspec 'README.md.' did not match any files
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git commit -m "docs: mi cambio para el conflicto" 
+On branch feature/estadisticas
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   README.md
+        modified:   main.ipynb
+
+no changes added to commit (use "git add" and/or "git commit -a")
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git merge feature/estadisticas
+Already up to date.
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git add main.ipynb
+warning: in the working copy of 'main.ipynb', LF will be replaced by CRLF the next time Git touches it
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git commit -m "feat: agregar resumen estadistico por grupo de edad"
+[feature/estadisticas 838b94e] feat: agregar resumen estadistico por grupo de edad
+ 1 file changed, 1108 insertions(+)
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git add README.md
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git commit -m "docs: registrar cambio en README rama estadisticas"
+[feature/estadisticas 0a58d32] docs: registrar cambio en README rama estadisticas
+ 1 file changed, 17 insertions(+), 3 deletions(-)
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git checkout main
+Switched to branch 'main'
+Your branch is ahead of 'origin/main' by 1 commit.
+  (use "git push" to publish your local commits)
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git merge feature/visualizaciones
+Already up to date.
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git merge feature/estadisticas
+Updating 31d92e6..0a58d32
+Fast-forward
+ README.md  |   20 +-
+ main.ipynb | 1108 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 1125 insertions(+), 3 deletions(-)
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git reset --hard HEAD~1
+HEAD is now at 838b94e feat: agregar resumen estadistico por grupo de edad
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git checkout main
+Already on 'main'
+Your branch is ahead of 'origin/main' by 2 commits.
+  (use "git push" to publish your local commits)
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git add README.md
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git commit -m "docs: cambio en main para forzar conflicto"
+[main 860d03e] docs: cambio en main para forzar conflicto
+ 1 file changed, 1 insertion(+)
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git merge feature/estadisticas
+Auto-merging README.md
+CONFLICT (content): Merge conflict in README.md
+Automatic merge failed; fix conflicts and then commit the result.
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git add README.md
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git commit -m "merge: integrar visualizaciones y estadisticas en main"
+[main 0dc8867] merge: integrar visualizaciones y estadisticas en main
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git log --oneline --graph
+*   0dc8867 (HEAD -> main) merge: integrar visualizaciones y estadisticas en main
+|\  
+| * 0a58d32 (feature/estadisticas) docs: registrar cambio en README rama estadisticas
+* | 860d03e docs: cambio en main para forzar conflicto
+|/  
+* 838b94e feat: agregar resumen estadistico por grupo de edad
+* 31d92e6 (feature/visualizaciones) Cambios en .docx
+* 723c01d (origin/main, origin/HEAD) docs: agregar resultado clave del EDA en README
+* ba26edb Feat: Agrega todos los archivos pendientes
+* 4d5e4e1 feat: cargar dataset cardiovascular desde UCI
+* a487e36 chore: agregar notebook principal del pipeline
+* 767b575 chore: inicializar estructura del proyecto
+* 435ca73 Create git_final_test.ipynb
+* 5dbb7f9 Add files via upload
+* e95a4c9 Initialize README with project title
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git add README.md
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git commit -m "docs: agregar historial final del proyecto en README"
+On branch main
+Your branch is ahead of 'origin/main' by 5 commits.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git push
+Enumerating objects: 19, done.
+Counting objects: 100% (19/19), done.
+Delta compression using up to 6 threads
+Compressing objects: 100% (15/15), done.
+Writing objects: 100% (15/15), 243.02 KiB | 9.72 MiB/s, done.
+Total 15 (delta 8), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (8/8), completed with 2 local objects.
+To https://github.com/VHugo-85/final_test_git.git
+   723c01d..0dc8867  main -> main
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git>  git add README.md
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git commit -m "docs: agregar historial final del proyecto en README"
+[main c11611b] docs: agregar historial final del proyecto en README
+ 1 file changed, 18 insertions(+)
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> git push
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 6 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 738 bytes | 738.00 KiB/s, done.
+Total 3 (delta 2), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+To https://github.com/VHugo-85/final_test_git.git
+   0dc8867..c11611b  main -> main
+PS C:\Users\LAB. ENTOMOLOGICO\final_test_git> 
