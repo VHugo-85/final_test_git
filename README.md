@@ -19,3 +19,4 @@ README.md Descripción del proyecto
 
 ## Resultado clave
 El 45.9% de los pacientes del dataset presenta enfermedad cardíaca.
+ESTO ES UN CAMBIO DESDE MAIN.
